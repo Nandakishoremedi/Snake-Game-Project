@@ -18,6 +18,9 @@ clock = pygame.time.Clock() # frame rate controller
 
 snake_body = [(snake_x,snake_y)]
 
+snake_skin = pygame.image.load("C:/Users/nanda/OneDrive/Desktop/Snake game/snake.png")
+snake_skin = pygame.transform.scale(snake_skin, (10, 10))
+
 def display_snake():  # function to display and move the snake
     global snake_x,snake_y, food_x,food_y,food_color
     snake_x=(snake_x+change_x)%width  #wrap  around the screen horozontally
@@ -29,7 +32,7 @@ def display_snake():  # function to display and move the snake
 
     snake_body.append((snake_x,snake_y))  #snake body increasing
 
-    #for snake length increasing after eating 
+    #for snake length incresing after eating 
     if(food_x==snake_x and food_y==snake_y):
         food_x,food_y=random.randrange(0,width)//10*10, random.randrange(0,height)//10*10
         food_color = (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
@@ -39,7 +42,7 @@ def display_snake():  # function to display and move the snake
     
     game_screen.fill([0,0,0])  # clear the screen and draw the snake
     for (x,y) in snake_body:
-        pygame.draw.rect(game_screen,(255,0,0),[x, y, 10, 10])
+        pygame.draw.rect(game_screen,(255,255,255),[x, y, 10, 10])
     pygame.draw.rect(game_screen,food_color,[food_x, food_y, 10, 10])
     pygame.display.update()
 
