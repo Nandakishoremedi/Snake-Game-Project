@@ -29,7 +29,7 @@ def display_snake():  # function to display and move the snake
 
     snake_body.append((snake_x,snake_y))  #snake body increasing
 
-    #for snake length incresing after eating 
+    #for snake length increasing after eating 
     if(food_x==snake_x and food_y==snake_y):
         food_x,food_y=random.randrange(0,width)//10*10, random.randrange(0,height)//10*10
         food_color = (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
