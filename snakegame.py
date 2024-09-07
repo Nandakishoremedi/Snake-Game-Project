@@ -18,6 +18,13 @@ clock = pygame.time.Clock() # frame rate controller
 
 snake_body = [(snake_x,snake_y)]
 
+try:
+    snake_skin = pygame.image.load("snake1.png")  # Replace with the path to your snake texture
+    snake_skin = pygame.transform.scale(snake_skin, (10, 10))  # Scale to 10x10 to fit the snake segment size
+except pygame.error as e:
+    print(f"Failed to load image: {e}")
+    pygame.quit()
+
 def display_snake():  # function to display and move the snake
     global snake_x,snake_y, food_x,food_y,food_color
     snake_x=(snake_x+change_x)%width  #wrap  around the screen horozontally
@@ -38,9 +45,10 @@ def display_snake():  # function to display and move the snake
         del snake_body[0]
     
     game_screen.fill([0,0,0])  # clear the screen and draw the snake
-    for (x,y) in snake_body:
-        pygame.draw.rect(game_screen,(255,255,255),[x, y, 10, 10])
-    pygame.draw.rect(game_screen,food_color,[food_x, food_y, 10, 10])
+    for (x, y) in snake_body:
+        game_screen.blit(snake_skin, (x, y))
+    pygame.draw.circle(game_screen, food_color, (food_x + 5, food_y + 5), 5)
+
     pygame.display.update()
 
 while True: 
